@@ -1,0 +1,12 @@
+/Users/macbookpro/Documents/Projects C#/TreeProjectSolution/TreeProject/bin/Debug/netcoreapp3.1/TreeProject.deps.json
+/Users/macbookpro/Documents/Projects C#/TreeProjectSolution/TreeProject/bin/Debug/netcoreapp3.1/TreeProject.runtimeconfig.json
+/Users/macbookpro/Documents/Projects C#/TreeProjectSolution/TreeProject/bin/Debug/netcoreapp3.1/TreeProject.runtimeconfig.dev.json
+/Users/macbookpro/Documents/Projects C#/TreeProjectSolution/TreeProject/bin/Debug/netcoreapp3.1/TreeProject.dll
+/Users/macbookpro/Documents/Projects C#/TreeProjectSolution/TreeProject/bin/Debug/netcoreapp3.1/TreeProject.pdb
+/Users/macbookpro/Documents/Projects C#/TreeProjectSolution/TreeProject/obj/Debug/netcoreapp3.1/TreeProject.csprojAssemblyReference.cache
+/Users/macbookpro/Documents/Projects C#/TreeProjectSolution/TreeProject/obj/Debug/netcoreapp3.1/TreeProject.AssemblyInfoInputs.cache
+/Users/macbookpro/Documents/Projects C#/TreeProjectSolution/TreeProject/obj/Debug/netcoreapp3.1/TreeProject.AssemblyInfo.cs
+/Users/macbookpro/Documents/Projects C#/TreeProjectSolution/TreeProject/obj/Debug/netcoreapp3.1/TreeProject.csproj.CoreCompileInputs.cache
+/Users/macbookpro/Documents/Projects C#/TreeProjectSolution/TreeProject/obj/Debug/netcoreapp3.1/TreeProject.dll
+/Users/macbookpro/Documents/Projects C#/TreeProjectSolution/TreeProject/obj/Debug/netcoreapp3.1/TreeProject.pdb
+/Users/macbookpro/Documents/Projects C#/TreeProjectSolution/TreeProject/obj/Debug/netcoreapp3.1/TreeProject.genruntimeconfig.cache
