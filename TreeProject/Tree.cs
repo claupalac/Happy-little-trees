@@ -5,16 +5,19 @@ namespace TreeProject
 {
     public class Tree : ITree
     {
+        private const int INITIAL_HEIGHT = 1;
+        private const int GROW_BY_ONE = 1;
         private int trunkHeight;
-        private List<Branch> myBranches = new List<Branch>();
+        private List<Branch> myBranches;
 
         public Tree()
         {
-            trunkHeight = 1;
+            myBranches = new List<Branch>();
+            trunkHeight = INITIAL_HEIGHT;
         }
         public void GrowTrunk()
         {
-            trunkHeight = trunkHeight + 1;
+            trunkHeight = trunkHeight + GROW_BY_ONE;
         }
 
         public void NewBranch()
@@ -30,18 +33,10 @@ namespace TreeProject
                 aBranch.GrowBranchByOne();
             }
         }
-        private int BranchesCount()
-        {
-            int result = 0;
-            foreach(Branch aBranch in myBranches)
-            {
-                result = result + 1;
-            }
-            return result;
-        }
+        
         public void Ouch(int n)
         {
-            if(ValidatePosition(n))
+            if(IsPositionValidated(n))
             {
                 myBranches.Remove(myBranches[n-1]);
             }
@@ -50,55 +45,53 @@ namespace TreeProject
         public string Description()
         {
             string description = "The tree trunk is " + trunkHeight.ToString() + " "+"unit(s) tall! There are 0 branch(es)!";
-            if (BranchesCount() > 0)
+            if (myBranches.Count > 0)
             {
                 description = "The tree trunk is " + trunkHeight.ToString() +
-                    " " + "unit(s) tall! There are " + Convert.ToString(BranchesCount()) +
-                    " " + "branch(es) that have position(s): " + StringOfBranchesPositions() +
-                    " " + "and length(s): " + StringOfBranchesLenght() + "!";
+                    " " + "unit(s) tall! There are " + myBranches.Count.ToString() +
+                    " " + "branch(es) that have position(s): " + GetBranchProperties("position") +
+                    " " + "and length(s): " + GetBranchProperties("length") + "!";
             }      
             return description;
         }
 
-        private bool ValidatePosition(int position)
+        private bool IsPositionValidated(int position)
         {
-            if (position > 0 && position < myBranches.Count) return true;
-            else return false;
+            if (position > 0 && position <= myBranches.Count)
+                return true;
+            else
+                return false;
         }
-        private string StringOfBranchesPositions()
+
+
+        private string GetBranchProperties(string property)
         {
-            string allPositions = null;
-            foreach(Branch aBranch in myBranches)
-            {
-                if(allPositions==null)
-                {
-                    allPositions = aBranch.GetPosition().ToString();
-                }
-                else
-                {
-                    int position = aBranch.GetPosition();
-                    allPositions = allPositions + "," + Convert.ToString(position);
-                }
-                
-            }
-            return allPositions;
-        }
-        private string StringOfBranchesLenght()
-        {
-            string allLenghts = null;
+            Dictionary<string, string> AllBranchProperties = new Dictionary<string, string>();
+            string allValues = null;
             foreach (Branch aBranch in myBranches)
             {
-                if (allLenghts == null)
+                if (allValues == null)
                 {
-                    allLenghts = aBranch.GetLenght().ToString();
+                    allValues = GetSingleProperty(aBranch, property);
                 }
                 else
                 {
-                    int lenghts = aBranch.GetLenght();
-                    allLenghts = allLenghts + "," + Convert.ToString(lenghts);
-                }      
+                    allValues = allValues + "," + GetSingleProperty(aBranch, property);
+                }
             }
-            return allLenghts;
+            AllBranchProperties.Add(property, allValues);
+            return AllBranchProperties[property];
+        }
+        private string GetSingleProperty(Branch aBranch, string property)
+        {
+            switch (property)
+            {
+                case "length":
+                    return aBranch.GetLength().ToString();
+                case "position":
+                    return aBranch.GetPosition().ToString();
+            }
+            return "";
         }
     }
 }

@@ -3,25 +3,26 @@ namespace TreeProject
 {
     public class Branch
     {
-        private int lengtht;
+        private const int INIT_LENGH = 1;
+        private int length;
         private int position;
 
         public Branch(int positionCreated)
         {
             position = positionCreated;
-            lengtht = 1;
+            length = INIT_LENGH;
         }
         public void GrowBranchByOne()
         {
-            lengtht++;
+            length++;
         }
         public int GetPosition()
         {
             return position;
         }
-        public int GetLenght()
+        public int GetLength()
         {
-            return lengtht;
+            return length;
         }
     }
 }
