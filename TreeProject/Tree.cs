@@ -49,8 +49,8 @@ namespace TreeProject
             {
                 description = "The tree trunk is " + trunkHeight.ToString() +
                     " " + "unit(s) tall! There are " + myBranches.Count.ToString() +
-                    " " + "branch(es) that have position(s): " + GetBranchProperties("position") +
-                    " " + "and length(s): " + GetBranchProperties("length") + "!";
+                    " " + "branch(es) that have position(s): " + GetStringWithComas(getBranchesPositionList()) +
+                    " " + "and length(s): " + GetStringWithComas(getBranchesLengthList()) + "!";
             }      
             return description;
         }
@@ -63,35 +63,36 @@ namespace TreeProject
                 return false;
         }
 
-
-        private string GetBranchProperties(string property)
+        private List<int> getBranchesLengthList()
         {
-            Dictionary<string, string> AllBranchProperties = new Dictionary<string, string>();
-            string allValues = null;
+            List<int> lenghtList = new List<int>();
+            foreach(Branch aBranch in myBranches)
+            {
+                lenghtList.Add(aBranch.GetLength());
+            }
+            return lenghtList;
+        }
+        private List<int> getBranchesPositionList()
+        {
+            List<int> lenghtList = new List<int>();
             foreach (Branch aBranch in myBranches)
             {
-                if (allValues == null)
-                {
-                    allValues = GetSingleProperty(aBranch, property);
-                }
-                else
-                {
-                    allValues = allValues + "," + GetSingleProperty(aBranch, property);
-                }
+                lenghtList.Add(aBranch.GetPosition());
             }
-            AllBranchProperties.Add(property, allValues);
-            return AllBranchProperties[property];
+            return lenghtList;
         }
-        private string GetSingleProperty(Branch aBranch, string property)
+        private string GetStringWithComas(List<int> rawList)
         {
-            switch (property)
+            string stringWithComas = null;
+            foreach(int aElement in rawList)
             {
-                case "length":
-                    return aBranch.GetLength().ToString();
-                case "position":
-                    return aBranch.GetPosition().ToString();
+                if (stringWithComas == null)
+                    stringWithComas = aElement.ToString();
+                else
+                    stringWithComas = stringWithComas + "," + aElement.ToString();
             }
-            return "";
+            return stringWithComas;
         }
+
     }
 }

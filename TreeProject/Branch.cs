@@ -3,14 +3,14 @@ namespace TreeProject
 {
     public class Branch
     {
-        private const int INIT_LENGH = 1;
+        private const int INIT_LENGTH = 1;
         private int length;
         private int position;
 
         public Branch(int positionCreated)
         {
             position = positionCreated;
-            length = INIT_LENGH;
+            length = INIT_LENGTH;
         }
         public void GrowBranchByOne()
         {
