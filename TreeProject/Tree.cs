@@ -5,15 +5,15 @@ namespace TreeProject
 {
     public class Tree : ITree
     {
-        private const int INITIAL_HEIGHT = 1;
+        private const int INIT_HEIGHT = 1;
         private const int GROW_BY_ONE = 1;
-        private int trunkHeight;
         private List<Branch> myBranches;
+        private int trunkHeight;
 
         public Tree()
         {
             myBranches = new List<Branch>();
-            trunkHeight = INITIAL_HEIGHT;
+            trunkHeight = INIT_HEIGHT;
         }
         public void GrowTrunk()
         {
@@ -47,20 +47,25 @@ namespace TreeProject
             string description = "The tree trunk is " + trunkHeight.ToString() + " "+"unit(s) tall! There are 0 branch(es)!";
             if (myBranches.Count > 0)
             {
-                description = "The tree trunk is " + trunkHeight.ToString() +
-                    " " + "unit(s) tall! There are " + myBranches.Count.ToString() +
-                    " " + "branch(es) that have position(s): " + GetStringWithComas(getBranchesPositionList()) +
-                    " " + "and length(s): " + GetStringWithComas(getBranchesLengthList()) + "!";
+                List<int> positions = getBranchesPositionList();
+                String positionsCommaSeparated = GetStringWithComas(positions);
+                List<int> lengths = getBranchesLengthList();
+                String lenghtsCommaSeparated = GetStringWithComas(lengths);
+                description = string.Format(getDescriptionFormat(),trunkHeight,myBranches.Count,positionsCommaSeparated,lenghtsCommaSeparated);
             }      
             return description;
         }
 
+        private string getDescriptionFormat()
+        {
+            return "The tree trink is {0} " +
+                    "unit(s) tall! There are {1} branch(es) that have " +
+                    "position(s): {2} and length(s): {3}!";
+        }
+
         private bool IsPositionValidated(int position)
         {
-            if (position > 0 && position <= myBranches.Count)
-                return true;
-            else
-                return false;
+            return position > 0 && position <= myBranches.Count;
         }
 
         private List<int> getBranchesLengthList()
@@ -72,6 +77,7 @@ namespace TreeProject
             }
             return lenghtList;
         }
+
         private List<int> getBranchesPositionList()
         {
             List<int> lenghtList = new List<int>();
@@ -81,6 +87,7 @@ namespace TreeProject
             }
             return lenghtList;
         }
+
         private string GetStringWithComas(List<int> rawList)
         {
             string stringWithComas = null;
